@@ -82,16 +82,7 @@ const atualizarUsuario = async (req, res) => {
 	const { nome, email, senha } = req.body
 	const { id } = req.usuario
 
-	const camposObrigatorios = {
-		nome: 'Campo nome é obrigatório!',
-		email: 'Campo email é obrigatório!',
-		senha: 'Campo senha é obrigatório!'
-	}
-	for (let campo in camposObrigatorios) {
-		if (!req.body[campo]) {
-			return res.status(400).json({ mensagem: camposObrigatorios[campo] });
-		}
-	}
+ 
 
 	try {
 		const emailExiste = await pool.query('select * from usuarios where email = $1', [email])
@@ -109,7 +100,7 @@ const atualizarUsuario = async (req, res) => {
 		return res.status(204).json()
 
 	} catch (error) {
-		// console.log(error)
+		 
 		return res.status(500).json({ mensagem: 'Erro interno do servidor' })
 	}
 }
