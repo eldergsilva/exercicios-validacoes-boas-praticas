@@ -1,7 +1,8 @@
 const express = require('express');
 const validarCorpoRequisicao = require('./intermediarios/validarCorpoRequisicao')
 const schemaUsuario = require('./validacoes/schemaUsuario')
-
+const schemaCadastrarTransacao= require('./validacoes/schemaCadastrarTransacao')
+ 
 const {
     login,
     cadastrarUsuario,
@@ -40,7 +41,7 @@ rotas.get('/perfil', detalharPerfilLogado)
 rotas.get('/usuario/:id', detalharUsuario)  
 rotas.put('/usuario', validarCorpoRequisicao(schemaAtualizarUsuario) ,atualizarUsuario)  
 rotas.get('/categoria', listarCategorias) 
-rotas.post('/transacao', CadastrarTransacao) 
+rotas.post('/transacao', validarCorpoRequisicao(schemaCadastrarTransacao),CadastrarTransacao) 
 rotas.get('/transacao', listarTransacao)  
 rotas.get('/transacao/extrato',obterExtradoDeUmaTransacao) 
 rotas.get('/transacao/:id',detalharTransacao) 
