@@ -1,5 +1,5 @@
 const pool = require('../conexao')
-const { validarCamposObrigatorios } = require('../intermediarios/validacao')
+const { validarCamposObrigatorios } = require('../intermediarios/validarCorpoRequisicao')
 
 const CadastrarTransacao = async (req, res) => {
 	const { tipo, descricao, valor, data, categoria_id } = req.body;

@@ -1,4 +1,6 @@
 const express = require('express');
+const validarCorpoRequisicao = require('./intermediarios/validarCorpoRequisicao')
+const schemaUsuario = require('./validacoes/schemaUsuario')
 
 const {
     login,
@@ -29,7 +31,7 @@ rotas.get('/', (req, res) => {
     res.json('Tudo Certo')
 })
 
-rotas.post('/usuario', cadastrarUsuario)  
+rotas.post('/usuario',validarCorpoRequisicao, cadastrarUsuario)  
 rotas.post('/login', login)  
 rotas.use(verificarUsuarioLogado) 
 
