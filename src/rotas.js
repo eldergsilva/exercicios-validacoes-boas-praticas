@@ -26,6 +26,7 @@ const verificarUsuarioLogado = require('./intermediarios/autenticacao');
 
 const listarCategorias = require('./controlador/categoria');
 const schemaAtualizarUsuario = require('./validacoes/schemaAtualizarUsuario');
+const schemaLogin = require('./validacoes/schemaLogin');
 
 const rotas = express();
 
@@ -34,7 +35,7 @@ rotas.get('/', (req, res) => {
 })
 
 rotas.post('/usuario', validarCorpoRequisicao(schemaUsuario) , cadastrarUsuario)  
-rotas.post('/login', login)  
+rotas.post('/login',validarCorpoRequisicao(schemaLogin), login)  
 rotas.use(verificarUsuarioLogado) 
 
 rotas.get('/perfil', detalharPerfilLogado)  
